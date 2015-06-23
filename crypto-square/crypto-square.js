@@ -1,5 +1,4 @@
-
-        var Crypto = function(phrase){
+var Crypto = function(phrase){
 	var squareSize=0;
 
 	function getSegments(str){
