@@ -1,5 +1,3 @@
-// clock.js
-
 exports.at = function(hour, minute){
 	var MINUTESPERDAY = 1440;
 	
