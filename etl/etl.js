@@ -1,6 +1,4 @@
-//etl.js
-
-var Transform = function(old){
+var Transform = module.exports = function(old){
 	var newData={};
 	for (score in old){
 		var letters=old[score];
@@ -10,6 +8,4 @@ var Transform = function(old){
 	}
 	return newData;
 };
-
-module.exports=Transform;
 
