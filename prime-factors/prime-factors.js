@@ -1,4 +1,4 @@
-var PrimeFactors = function(){};
+var PrimeFactors = module.exports = function(){};
 
 PrimeFactors.for = function(num){
 	var factors=[];
@@ -15,7 +15,5 @@ PrimeFactors.for = function(num){
 	}
 	return factors;
 };
-
-module.exports = PrimeFactors;
 
 

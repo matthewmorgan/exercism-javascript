@@ -1,5 +1,3 @@
-// phone-number.js
-
 module.exports = function(input){
 
 	//strip non-numerics
@@ -8,10 +6,8 @@ module.exports = function(input){
 
 	if (input.length===11 && input.substring(0,1)==="1"){
 		phone=input.substring(1,11);	
-	} else {
-		if (input.length===10){
-			phone=input;
-		}
+	} else if (input.length===10){
+		phone=input;
 	}
 
 	return {
@@ -29,5 +25,4 @@ module.exports = function(input){
 			return phone.substring(0,3)
 		}
 	}
-
 };

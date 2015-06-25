@@ -1,7 +1,5 @@
-//gigasecond.js
-
 var GIGA=1000000000000; //giga in milli
-var Gigasecond = function(birthdate){
+var Gigasecond = module.exports = function(birthdate){
 	this.birthdate=birthdate;
 };
 
@@ -10,7 +8,6 @@ Gigasecond.prototype.date = function(){
 	return gigaDate;
 };
 
-module.exports=Gigasecond;
 
 
       

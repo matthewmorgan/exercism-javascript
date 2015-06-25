@@ -1,4 +1,3 @@
-
 var getAddends = function(value){
 	return value.split('').reverse('').reduce(function(prev, curr, ii){
 	  (ii % 2 !== 0) ? prev.push(+curr*2 >=10 ? +curr*2-9 : +curr*2) : prev.push(+curr);
@@ -30,7 +29,7 @@ var create = function(value){
 	return (value+checkDigit);
 };
 
-var Luhn = function(accountNumber){
+var Luhn = module.exports = function(accountNumber){
 	var value=accountNumber.toString();
 	return {
 		checkDigit : getCheckDigit(value),
@@ -46,5 +45,3 @@ var Luhn = function(accountNumber){
 Luhn.create = function(raw){
 	return create(raw);
 };
-
-module.exports = Luhn;

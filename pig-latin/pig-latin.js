@@ -1,4 +1,3 @@
-
 var PigLatin = function(){};
 
 var translateVowelStart = function(word){
@@ -20,7 +19,6 @@ var translateConsonantStart = function(word){
 };
 
 var getPigWord = function(word, suffix){
-	console.log('suffix ', suffix);
 	return (word.substr(suffix.length, word.length-(suffix.length))+suffix+'ay');
 };
 

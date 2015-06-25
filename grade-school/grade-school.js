@@ -1,6 +1,4 @@
-// grade-school.js
-var School = function(){
-
+var School = module.exports = function(){
 	var db={};
 	return {
 		add: function(name, grade){
@@ -16,7 +14,4 @@ var School = function(){
 			return db;
 		}
 	}
-
 };
-
-module.exports=School;
