@@ -1,4 +1,4 @@
-var Roman = function(decimal){
+var Roman = module.exports = function(decimal){
 	var ROMANS = {
 		1: ["","I","II","III","IV","V","VI","VII","VIII","IX"],
 		10: ["", "X", "XX", "XXX", "XL","L","LX","LXX","LXXX","XC"],
@@ -13,8 +13,6 @@ var Roman = function(decimal){
 		return prev+ROMANS[Math.pow(10, expOffset-ii)][+current];
 	}, "");
 };
-
-module.exports=Roman;
 
 
 

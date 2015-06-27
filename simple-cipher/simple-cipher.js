@@ -1,4 +1,3 @@
-
 var MAXCHAR = 122;
 var MINCHAR = 97;
 var ALPHABETLENGTH=26;
@@ -9,7 +8,7 @@ function generateKey(){
 		newKey+=String.fromCharCode(Math.floor(Math.random()*26)+97);
 	}
 	return newKey;	
-};
+}
 
 
 var Cipher = function(key){
@@ -27,7 +26,7 @@ var Cipher = function(key){
 			encodedText+=String.fromCharCode(encodedCharCode);
 		}
 		return encodedText;
-	};
+	}
 	
 	function decode(encodedText) {
 		var plaintext="";
@@ -37,7 +36,7 @@ var Cipher = function(key){
 			plaintext+=String.fromCharCode(plainCharCode);
 		}
 		return plaintext;
-	};
+	}
 
 	return {
 		key: key,
