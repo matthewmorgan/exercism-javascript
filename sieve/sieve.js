@@ -7,7 +7,7 @@ module.exports = function(limit){
 	};
 	for (var ii=2;ii<=limit/2;ii++){
 		for (var jj=2*p;jj<=limit;jj+=p){
-			range[jj].prime && range[jj].val % p ===0 ? range[jj].prime=false : null;
+			range[jj].prime=false;
 		}
 		p++;
 	}

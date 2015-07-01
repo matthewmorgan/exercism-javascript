@@ -1,3 +1,3 @@
-var Leap = module.exports = function(year){
+var Leap = function(year){
 	return (year % 400 === 0 || (year % 100!==0 && year % 4 === 0));
 };
