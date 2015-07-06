@@ -1,36 +1,14 @@
-
-var counts = {
-	A: 0,
-	T: 0,
-	C: 0,
-	G: 0
-};
-
 module.exports = function(strand) {
-	strand=strand || "";
-	if (strand.match(/[^ACTG]/)){
-		throw {
-			name: "an exception",
-			message: "alien DNA?"
-		}
-	}
+	strand=strand || '';
+	if (strand.match(/[^ACTG]/)) throw new Error();
+	var histo = strand.split('').reduce(function(histo, nuc){
+			histo[nuc]++;
+			return histo;
+	},{'A':0, 'C':0, 'T':0,'G':0});
+
 	return {
-		count: function(nucleotide){
-			var result=0;
-			for (var ii=0;ii<strand.length;ii++){
-				if (strand[ii]===nucleotide){
-					result++;
-				}
-			}
-			counts[nucleotide]=result;
-			return result;
-		},
-		histogram: function() {
-			for (key in counts){
-				this.count(key);
-			}
-			return counts;
-		}
+		count: function(nuc) { return histo[nuc] },
+		histogram: function() { return histo }
 	}
 };
 
