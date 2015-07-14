@@ -11,7 +11,7 @@ function isQuestion(input) {
 };
 
 var responses = {
-  3: 'Fine. Be that way!',
+  4: 'Fine. Be that way!',
   2: 'Whoa, chill out!',
   1: 'Sure.',
   0: 'Whatever.'
