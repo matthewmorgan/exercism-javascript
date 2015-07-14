@@ -4,3 +4,5 @@ module.exports = function(input){
 		return counts;
 	}, Object.create(null));
 };
+
+

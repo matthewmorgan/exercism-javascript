@@ -1,29 +1,32 @@
-var isSilent = function(input){
-    return (input.length<1);
+function isSilent(input) {
+  return (input.trim().length < 1);
 };
 
-var isShouting = function(input) {
-    return input.toUpperCase() === input && input.match(/[a-zA-Z]/);
+function isShouting(input) {
+  return (input.toUpperCase() === input) && (/[A-Z]+/).test(input);
 };
 
-var isQuestion = function(input){
-    return !isSilent(input) ? input.charAt(input.length-1)==='?' : false;
+function isQuestion(input) {
+  return input.charAt(input.length - 1) === '?';
 };
 
-var Bob = module.exports = function() {};
+var responses = {
+  3: 'Fine. Be that way!',
+  2: 'Whoa, chill out!',
+  1: 'Sure.',
+  0: 'Whatever.'
+}
 
-Bob.prototype.hey = function(input) {
-    input = (typeof input === 'string' ? input.trim() : '');
-
-    if(isSilent(input)){
-        return 'Fine. Be that way!';
+var Bob = module.exports = function () {
+  return {
+    hey: function(input){
+      return responses[
+          Math.max(
+            isSilent(input) << 2,
+            isShouting(input) << 1,
+            isQuestion(input) << 0
+          )
+        ];
     }
-    if (isShouting(input)){
-        return 'Whoa, chill out!';
-    }
-    if (isQuestion(input)){
-        return 'Sure.';
-    }
-    return 'Whatever.';
-
+  }
 };

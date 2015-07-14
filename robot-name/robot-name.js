@@ -1,7 +1,7 @@
 // robot-name.js
 
 var Robot = function(){
-	
+
 	var getRandomInt = function(min, max) {
 		return Math.floor(Math.random() * (max - min)) + min;
 	};
@@ -16,7 +16,7 @@ var Robot = function(){
 		temp+=getRandomInt(0,9);
 		return temp;
 	};
-	
+
 	var name=generateName();
 
 	return {

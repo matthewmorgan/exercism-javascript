@@ -13,6 +13,7 @@ PrimeFactors.for = function(num){
 			currentFactor++;
 		}
 	}
+	console.log(factors);
 	return factors;
 };
 
