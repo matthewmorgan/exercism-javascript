@@ -1,16 +1,13 @@
-// robot-name.js
-
-var Robot = function(){
+module.exports = Robot = function(){
 
 	var getRandomInt = function(min, max) {
 		return Math.floor(Math.random() * (max - min)) + min;
 	};
-	var getRandomLetters = function(){
-		return String.fromCharCode(getRandomInt(65,90))
-			+String.fromCharCode(getRandomInt(65,90));
+	var getRandomLetter = function(){
+		return String.fromCharCode(getRandomInt(65,90));
 	};
 	var generateName = function(){
-		var temp=getRandomLetters();
+		var temp=getRandomLetter()+getRandomLetter();
 		temp+=getRandomInt(0,9);
 		temp+=getRandomInt(0,9);
 		temp+=getRandomInt(0,9);
@@ -26,5 +23,3 @@ var Robot = function(){
 		name: name
 	}
 };
-
-module.exports=Robot;

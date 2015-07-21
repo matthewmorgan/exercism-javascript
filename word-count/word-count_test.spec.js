@@ -53,6 +53,24 @@ describe("words()", function() {
     expect(words("hello  world")).toEqual(expectedCounts);
   });
 
+
+  it("does not count leading or trailing whitespace", function() {
+    var expectedCounts = { Introductory: 1, Course: 1 };
+    expect(words("\t\tIntroductory Course      ")).toEqual(expectedCounts);
+  });
+
+
+  it("handles whitespace only input", function() {
+    var expectedCounts = {  };
+    expect(words("   ")).toEqual(expectedCounts);
+  });
+
+  it("handles non-string input", function() {
+    var expectedCounts = {};
+    expect(words(999)).toEqual(expectedCounts);
+  });
+
+
   it("handles properties that exist on Object’s prototype", function() {
     var expectedCounts = { reserved: 1, words : 1, like :1,  prototype: 1, and : 1, toString: 1,  "ok?": 1};
     expect(words("reserved words like prototype and toString ok?")).toEqual(expectedCounts);
