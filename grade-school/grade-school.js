@@ -1,4 +1,4 @@
-var School = module.exports = function(){
+module.exports = function(){
 	var db={};
 	return {
 		add: function(name, grade){
@@ -8,10 +8,10 @@ var School = module.exports = function(){
 			db[grade]=classNames;
 		},
 		grade: function(grade){
-			return db[grade] || [];
+			return db[grade] ? JSON.parse(JSON.stringify(db[grade])) : [];
 		},
 		roster: function(){
-			return db;
+			return JSON.parse(JSON.stringify(db));
 		}
 	}
 };

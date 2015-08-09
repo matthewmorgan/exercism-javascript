@@ -1,3 +1,5 @@
+'use strict'
+
 module.exports = function(input){
 	return (typeof input === 'string' ? input.match(/\S+/g) || [] : [])
 			.reduce(function(counts, word){
@@ -5,3 +7,4 @@ module.exports = function(input){
 				return counts;
 			}, {});
 };
+

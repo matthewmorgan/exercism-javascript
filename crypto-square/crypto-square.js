@@ -1,3 +1,6 @@
+'use strict'
+
+
 var Crypto = function(phrase){
 	var squareSize=0;
 
@@ -50,4 +53,3 @@ var Crypto = function(phrase){
 };
 
 module.exports = Crypto;
-      

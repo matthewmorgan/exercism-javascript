@@ -1,12 +1,6 @@
-var Grains=function(){};
-
-Grains.prototype.square=function(number){
-	return Math.pow(2, number-1);
+module.exports=function(){
+	return {
+		square: function(n){ return Math.pow(2, n-1) },
+		total: function(){ return Math.pow(2, 64)-1 }
+	}
 };
-
-//nothing in the spec that says the number of squares is variable...?
-Grains.prototype.total = function(){
-	return Math.pow(2, 64)-1;
-}
-
-module.exports=Grains;
