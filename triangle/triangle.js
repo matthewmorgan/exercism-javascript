@@ -1,33 +1,20 @@
-//triangle.js
+module.exports = function(a,b,c){
 
-var Triangle = function(a,b,c){
-	
-	function inequality(){
-		return (a+b>c && a+c>b && b+c>a);
-	};
-	
-	function checkType(){
-		if (a===b && b===c){
-			return "equilateral";
-		}
-		if (a===b || a===c || b===c){
-			return "isosceles";
-		}
-		return "scalene";
-	};
-	
+	function meetsInequality(){ return (a+b>c && a+c>b && b+c>a); }
+
+	function getType(){
+		return (a===b && b===c) ? "equilateral"
+				: (a===b || a===c || b===c) ? "isosceles"
+				: "scalene";
+	}
+
 	return {
 		kind : function(){
-			if (inequality()){
-				return checkType();
+			if (meetsInequality()){
+				return getType();
 			}
-			throw {
-				name: "triangle exception",
-				message: "these are not the droids you're looking for"
-			}
+			throw new Exception("These are not the droids you're looking for.");
 		}
 	};
 };
-	 
-module.exports=Triangle;
 	
