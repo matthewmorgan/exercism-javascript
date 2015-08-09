@@ -6,34 +6,29 @@ function generateKey(){
 	}).join('');
 }
 
+function xCode(key, inText, sign){
+	return inText.split('').reduce(function(outText, letter, ii){
+		var xCharCode = letter.charCodeAt(0) + sign*(key.charCodeAt(ii % key.length) - MINCHAR);
+		(xCharCode>MAXCHAR || xCharCode<MINCHAR) ? xCharCode -= sign*(ALPHABETLENGTH) : {};
+		outText += String.fromCharCode(xCharCode);
+		return outText;
+	}, "");
+}
+
 module.exports = function(key){
 	if (typeof key === 'undefined'){
-		key=generateKey();
-	} else if (key.length===0 || key.match(/[^a-z]/,"g")){
+		key = generateKey();
+	} else if (key.length === 0 || key.match(/[^a-z]/,"g")){
 		throw(new Error("Bad key"));
-	}		
-
-	function encode(plaintext){
-		return plaintext.split('').reduce(function(encodedText, letter, ii){
-				var encodedCharCode=key.charCodeAt(ii % key.length)-MINCHAR+letter.charCodeAt(0);
-				encodedCharCode>MAXCHAR ? encodedCharCode-=ALPHABETLENGTH : {};
-				encodedText+=String.fromCharCode(encodedCharCode);
-				return encodedText;
-			}, "");
-	}
-	
-	function decode(encodedText) {
-		return encodedText.split('').reduce(function(plainText, letter, ii){
-			var plainCharCode=letter.charCodeAt(0)-(key.charAt(ii % key.length).charCodeAt(0)-MINCHAR);
-			plainCharCode<MINCHAR ? plainCharCode+=ALPHABETLENGTH : {};
-			plainText+=String.fromCharCode(plainCharCode);
-			return plainText;
-		}, "");
 	}
 
 	return {
 		key: key,
-		encode: encode,
-		decode: decode
+		encode: function(plainText){
+			return xCode(this.key, plainText, 1);
+		},
+		decode: function(encodedText){
+			return xCode(this.key, encodedText, -1);
+		}
 	};
 };
