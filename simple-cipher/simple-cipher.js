@@ -2,7 +2,7 @@ var MAXCHAR = 122, MINCHAR = 97, ALPHABETLENGTH=26;
 
 function generateKey(){
 	return Array.apply(null, Array(100)).map(function(){
-		return String.fromCharCode(Math.floor(Math.random()*ALPHABETLENGTH)+MINCHAR);
+		return String.fromCharCode(Math.floor(Math.random() * ALPHABETLENGTH) + MINCHAR);
 	}).join('');
 }
 
