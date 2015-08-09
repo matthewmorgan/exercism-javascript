@@ -1,3 +1,5 @@
+var usedNames=[];
+
 module.exports = Robot = function(){
 
 	var getRandomInt = function(min, max) {
@@ -11,6 +13,10 @@ module.exports = Robot = function(){
 		temp+=getRandomInt(0,9);
 		temp+=getRandomInt(0,9);
 		temp+=getRandomInt(0,9);
+		while (usedNames[temp]){
+			temp=generateName();
+		}
+		usedNames.push(temp);
 		return temp;
 	};
 
@@ -20,6 +26,7 @@ module.exports = Robot = function(){
 		reset: function(){
 			this.name=generateName();
 		},
-		name: name
+		name: name,
+		usedNames: usedNames
 	}
 };

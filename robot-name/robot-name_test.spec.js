@@ -24,4 +24,20 @@ describe("Robot", function() {
     var newName = robot.name;
     expect(originalName).not.toEqual(newName);
   });
+
+  it("names are not repeated even with very large production of robots", function(){
+    var usedNames=[];
+    var robot=new Robot();
+    var robot2=new Robot();
+    usedNames.push(robot.name);
+    usedNames.push(robot2.name);
+    for (var ii=1;ii<1000000;ii++){
+      robot.reset();
+      robot2.reset();
+      expect(usedNames[robot.name]).toEqual(undefined);
+      expect(usedNames[robot2.name]).toEqual(undefined);
+      usedNames.push(robot.name);
+      usedNames.push(robot2.name);
+    }
+  })
 });
