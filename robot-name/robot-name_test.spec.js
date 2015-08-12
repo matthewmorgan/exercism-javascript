@@ -3,6 +3,7 @@ var Robot = require('./robot-name');
 describe("Robot", function() {
   it("has a name", function() {
     var robot = new Robot();
+    console.log(robot.name);
     expect(robot.name).toMatch(/^[A-Z]{2}\d{3}$/);
   });
 
@@ -15,6 +16,15 @@ describe("Robot", function() {
     var robotOne = new Robot();
     var robotTwo = new Robot();
     expect(robotOne.name).not.toEqual(robotTwo.name);
+
+  });
+
+  it("different robots increment nameCount", function() {
+    var robotOne = new Robot();
+    var robotTwo = new Robot();
+    console.log(robotOne.getNameCount(), robotTwo.getNameCount());
+    expect(robotOne.getNameCount()).toEqual(robotTwo.getNameCount());
+    expect(robotOne.getUsedNames()).toEqual(robotTwo.getUsedNames());
   });
 
   it("is able to reset the name", function() {
@@ -26,18 +36,18 @@ describe("Robot", function() {
   });
 
   it("names are not repeated even with very large production of robots", function(){
-    var usedNames=[];
+    var usedNames={};
     var robot=new Robot();
     var robot2=new Robot();
-    usedNames.push(robot.name);
-    usedNames.push(robot2.name);
-    for (var ii=1;ii<1000000;ii++){
+    usedNames[robot.name]=true;
+    usedNames[robot2.name]=true;
+    for (var ii=0;ii<2500;ii++){
       robot.reset();
       robot2.reset();
       expect(usedNames[robot.name]).toEqual(undefined);
       expect(usedNames[robot2.name]).toEqual(undefined);
-      usedNames.push(robot.name);
-      usedNames.push(robot2.name);
+      usedNames[robot.name]=true;
+      usedNames[robot2.name]=true;
     }
   })
 });

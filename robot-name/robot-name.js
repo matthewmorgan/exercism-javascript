@@ -1,30 +1,44 @@
-var used=[];
+var MAXNAMES=676000;
+var used = {};
 
-module.exports = function(){
-
-	var getRandomInt = function(min, max) {
-		return Math.floor(Math.random() * (max - min)) + min;
-	};
-
-	var getRandomLetter = function(){
-		return String.fromCharCode(getRandomInt(65,90));
-	};
-
-	var generateName = function(){
-		var temp=getRandomLetter()+getRandomLetter();
-		temp+=getRandomInt(0,9);
-		temp+=getRandomInt(0,9);
-		temp+=getRandomInt(0,9);
-		while (used[temp]){ temp=generateName(); }
-		used.push(temp);
-		return temp;
-	};
-
-	var name=generateName();
-
-	return {
-		reset: function(){ this.name=generateName(); },
-		name: name,
-		usedNames: used
-	}
+var Robot = function(){
+	this.name=this.reset();
+	return this;
 };
+
+Robot.prototype.getNameCount = function(){
+	return Object.keys(used).length;
+};
+
+Robot.prototype.getUsedNames = function() {
+	return used;
+};
+
+Robot.prototype.getRandomInt = function(min, max) {
+	return Math.floor(Math.random() * (max - min)) + min;
+};
+
+Robot.prototype.getRandomLetter = function() {
+	return String.fromCharCode(this.getRandomInt(65, 90));
+};
+
+Robot.prototype.generateName = function() {
+	if (Object.keys(used).length === MAXNAMES) throw new Error("Maximum number of available names reached!");
+	var temp=this.getRandomLetter()+this.getRandomLetter();
+	temp+=this.getRandomInt(0,9);
+	temp+=this.getRandomInt(0,9);
+	temp+=this.getRandomInt(0,9);
+	return temp;
+};
+
+Robot.prototype.reset = function() {
+	var temp="";
+	do { temp=this.generateName(); }
+	while (used[temp]);
+
+	this.name=temp;
+	used[temp]=true;
+	return this.name;
+};
+
+module.exports = Robot;

@@ -1,4 +1,4 @@
-var MAXCHAR = 122, MINCHAR = 97, ALPHABETLENGTH=26;
+var MAXCHAR = 122, MINCHAR = 97, ALPHABETLENGTH = 26;
 
 function generateKey(){
 	return Array.apply(null, Array(100)).map(function(){
@@ -9,7 +9,7 @@ function generateKey(){
 function xCode(key, inText, sign){
 	return inText.split('').reduce(function(outText, letter, ii){
 		var xCharCode = letter.charCodeAt(0) + sign*(key.charCodeAt(ii % key.length) - MINCHAR);
-		(xCharCode>MAXCHAR || xCharCode<MINCHAR) ? xCharCode -= sign*(ALPHABETLENGTH) : {};
+		(xCharCode > MAXCHAR || xCharCode < MINCHAR) ? xCharCode -= sign*(ALPHABETLENGTH) : {};
 		outText += String.fromCharCode(xCharCode);
 		return outText;
 	}, "");
