@@ -1,18 +1,22 @@
-var MAXCHAR = 122, MINCHAR = 97, ALPHABETLENGTH = 26;
+var alpha = "abcdefghijklmnopqrstuvwxyz";
 
 function generateKey(){
 	return Array.apply(null, Array(100)).map(function(){
-		return String.fromCharCode(Math.floor(Math.random() * ALPHABETLENGTH) + MINCHAR);
+		return alpha.charAt(Math.floor(Math.random() * alpha.length));
 	}).join('');
 }
 
 function xCode(key, inText, sign){
+	console.log(key);
 	return inText.split('').reduce(function(outText, letter, ii){
-		var xCharCode = letter.charCodeAt(0) + sign*(key.charCodeAt(ii % key.length) - MINCHAR);
-		(xCharCode > MAXCHAR || xCharCode < MINCHAR) ? xCharCode -= sign*(ALPHABETLENGTH) : {};
-		outText += String.fromCharCode(xCharCode);
+		var offset = sign * alpha.indexOf(key.charAt(mod(ii, key.length)));
+		outText += alpha.charAt(mod(alpha.indexOf(letter)+offset ,alpha.length));
 		return outText;
 	}, "");
+}
+
+function mod(n, m) {
+	return ((n % m) + m) % m;
 }
 
 module.exports = function(key){

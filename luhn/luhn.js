@@ -1,30 +1,30 @@
 var Luhn = module.exports = function (accountNumber) {
   this.number = accountNumber;
   this.digits = String(accountNumber).split('').reverse();
-  this.checkDigit = this.getCheckDigit();
-  this.checksum = this.getChecksum();
-  this.addends = this.getAddends();
-  this.valid = this.isValid();
+  this.checkDigit = getCheckDigit(this.digits);
+  this.checksum = getChecksum(this.digits);
+  this.addends = getAddends(this.digits);
+  this.valid = isValid(this.digits);
 };
 
-Luhn.prototype.getAddends = function() {
-  return this.digits.reduce(function (prev, curr, ii) {
+function getAddends (digits) {
+  return digits.reduce(function (prev, curr, ii) {
     ii % 2 !== 0 ? prev.push(+curr * 2 > 9 ? +curr * 2 - 9 : +curr * 2)
         : prev.push(+curr);
     return prev;
   }, []).reverse();
 };
 
-Luhn.prototype.getCheckDigit = function() {
-  return +this.digits[0];
+function getCheckDigit(digits) {
+  return +digits[0];
 };
 
-Luhn.prototype.isValid = function() {
-  return this.getChecksum() % 10 === 0;
+function isValid (digits) {
+  return getChecksum(digits) % 10 === 0;
 };
 
-Luhn.prototype.getChecksum = function() {
-  return this.getAddends().reduce(function (prev, curr) {
+function getChecksum (digits) {
+  return getAddends(digits).reduce(function (prev, curr) {
     return prev += (+curr);
   }, 0);
 };

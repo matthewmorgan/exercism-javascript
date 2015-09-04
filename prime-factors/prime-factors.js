@@ -1,20 +1,17 @@
-var PrimeFactors = module.exports = function(){};
+var PrimeFactors = module.exports = function(){ this.factors =[];};
 
-PrimeFactors.for = function(num){
-	var factors=[];
-	var currentFactor=2;
-	var remaining=num;
-	while (remaining!==1){
-		if (remaining % currentFactor === 0){
-			factors.push(currentFactor);
-			remaining=remaining/currentFactor;
-			currentFactor=2;
+PrimeFactors.prototype.for = function(num, remaining, currentFactor) {
+	var currentFactor = currentFactor || 2;
+	var remaining = remaining || num;
+	if (remaining !== 1) {
+		if (remaining % currentFactor === 0) {
+			this.factors.push(currentFactor);
+			remaining /= currentFactor;
+			currentFactor = 2;
 		} else {
 			currentFactor++;
 		}
+		return this.for(num, remaining, currentFactor);
 	}
-	console.log(factors);
-	return factors;
+	return this.factors;
 };
-
-

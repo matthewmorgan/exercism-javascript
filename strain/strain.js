@@ -1,11 +1,12 @@
 function getMatches(doMatch, db, filter){
-	return db.reduce(function(prev, curr){
-		doMatch===filter(curr) ? prev.push(curr) : null;
-		return prev;
-	},[]);
+	var matches=[];
+	for (var ii=0;ii<db.length;ii++){
+		doMatch === filter(db[ii]) ? matches.push(db[ii]) : {};
+	}
+	return matches;
 };
 
-var Strain = function(){
+module.exports = (function(){
 	return {
 		keep: function(db, filter){
 			return getMatches(true, db, filter);
@@ -14,6 +15,5 @@ var Strain = function(){
 			return getMatches(false, db, filter);
 		}
 	};
-};
+})();
 
-module.exports = Strain();
