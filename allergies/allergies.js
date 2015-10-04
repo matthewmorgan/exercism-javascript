@@ -22,7 +22,7 @@ module.exports = function(score) {
 
 	this.allergicTo = (allergen)  =>  {
 		return this.list().indexOf(allergen)>=0;
-	}
+	};
 
 	return this;
-};
+}

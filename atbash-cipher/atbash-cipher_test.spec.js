@@ -1,4 +1,4 @@
-var atbash = require('./atbash-cipher');
+var atbash = require('./atbash_cipher');
 
 describe("encode", function() {
 
