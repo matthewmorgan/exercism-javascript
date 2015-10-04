@@ -11,21 +11,22 @@ var ALLERGENS = {
 	"128": "cats"
 };
 
-var Allergies = function Allergies(score) {
-	this.score = score;
-	return {
-		list: function list() {
-			Object.keys(ALLERGENS).reduce(function (prev, curr) {
-				+curr & score ? prev.push(ALLERGENS[curr]) : prev;
-				return prev;
-			}, []);
-		},
-		allergicTo: function allergicTo(allergen) {
-			return this.list().indexOf(allergen) >= 0;
-		}
-	};
-};
+module.exports = function (score) {
+	var _this = this;
 
-module.exports = Allergies;
+	this.score = score;
+	this.list = function () {
+		return Object.keys(ALLERGENS).reduce(function (prev, curr) {
+			+curr & score ? prev.push(ALLERGENS[curr]) : prev;
+			return prev;
+		}, []);
+	};
+
+	this.allergicTo = function (allergen) {
+		return _this.list().indexOf(allergen) >= 0;
+	};
+
+	return this;
+};
 
 //# sourceMappingURL=allergies-compiled.js.map

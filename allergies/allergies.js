@@ -11,19 +11,18 @@ var ALLERGENS = {
 	"128": "cats"
 };
 
-var Allergies = function(score){
+module.exports = function(score) {
 	this.score=score;
-	return {
-		list: function() {
-			Object.keys(ALLERGENS).reduce(function(prev, curr){
-				+curr & score ? prev.push(ALLERGENS[curr]) : prev;
-				return prev;
-			}, []);
-		},
-		allergicTo: function (allergen){
-			return this.list().indexOf(allergen)>=0;
-		}
+	this.list = () => {
+		 return Object.keys(ALLERGENS).reduce((prev, curr) => {
+			+curr & score ? prev.push(ALLERGENS[curr]) : prev;
+			return prev;
+		}, []);
 	};
-};
 
-module.exports = Allergies;
+	this.allergicTo = (allergen)  =>  {
+		return this.list().indexOf(allergen)>=0;
+	}
+
+	return this;
+};
