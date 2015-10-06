@@ -17,10 +17,10 @@ var responses = {
   0: 'Whatever.'
 }
 
-var Bob = module.exports = function () {
+var Bob = module.exports =  function() {
   return {
-    hey: function(input){
-      return responses[
+    hey:  (input) => {
+       return responses[
           Math.max(
             isSilent(input) << 2,
             isShouting(input) << 1,
