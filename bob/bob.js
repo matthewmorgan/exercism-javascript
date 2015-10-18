@@ -10,7 +10,7 @@ function isQuestion(input) {
   return input.charAt(input.length - 1) === '?';
 };
 
-var responses = {
+let responses = {
   4: 'Fine. Be that way!',
   2: 'Whoa, chill out!',
   1: 'Sure.',

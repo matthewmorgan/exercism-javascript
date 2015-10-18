@@ -68,9 +68,8 @@ function getVerse(verseNumber){
   var lines=[];
   var currentCreatureNumber=verseNumber;
   lines.push(getWhatSheSwallowed(currentCreatureNumber));
-  var uniqueStatement=getUniqueStatement(currentCreatureNumber);
-  if (uniqueStatement){
-    lines.push(uniqueStatement);
+  if (getUniqueStatement(currentCreatureNumber)){
+    lines.push(getUniqueStatement(currentCreatureNumber));
   }
   
   while (!isTerminalCreature(currentCreatureNumber)){

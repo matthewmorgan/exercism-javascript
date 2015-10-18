@@ -1,13 +1,11 @@
-var GIGA=1000000000000; //giga in milli
-var Gigasecond = module.exports = function(birthdate){
-	this.birthdate=birthdate;
+var GIGA_IN_MILLIS=1000000000000;
+
+var Gigasecond = module.exports = function(born){
+	this.born=born;
 };
 
 Gigasecond.prototype.date = function(){
-	var gigaDate=new Date(new Date(this.birthdate.getTime()+GIGA).toDateString());
-	return gigaDate;
+	return new Date(new Date(this.born.getTime()+GIGA_IN_MILLIS).toDateString());
 };
-
-
 
       

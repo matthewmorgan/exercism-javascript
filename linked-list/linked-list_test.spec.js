@@ -1,4 +1,4 @@
-var LinkedList = require('./linked-list');
+var LinkedList = require('./linked_list.js');
 
 describe('LinkedList', function () {
   it('push/pop', function () {
