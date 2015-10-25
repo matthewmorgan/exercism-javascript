@@ -5,6 +5,7 @@ describe("Gigasecond", function() {
   it("test 1", function() {
     var gs = new Gigasecond(new Date(2011, 3, 25));
     var expectedDate = new Date(2043, 0, 1);
+    console.log(gs.date());
     expect(gs.date()).toEqual(expectedDate);
   });
 

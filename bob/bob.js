@@ -1,9 +1,11 @@
+'use strict';
+
 function isSilent(input) {
   return (input.trim().length < 1);
 };
 
 function isShouting(input) {
-  return (input.toUpperCase() === input) && (/[A-Z]+/).test(input);
+  return (input.toUpperCase() === input) && (/[A-Z]/).test(input);
 };
 
 function isQuestion(input) {

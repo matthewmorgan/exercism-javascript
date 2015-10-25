@@ -5,7 +5,7 @@ var Gigasecond = module.exports = function(born){
 };
 
 Gigasecond.prototype.date = function(){
-	return new Date(new Date(this.born.getTime()+GIGA_IN_MILLIS).toDateString());
+	return new Date(new Date(+this.born+GIGA_IN_MILLIS).toDateString());
 };
 
       
