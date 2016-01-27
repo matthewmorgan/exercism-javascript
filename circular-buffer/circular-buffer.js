@@ -1,54 +1,54 @@
-var BufferEmptyException =  function() {
-	return {
-		name: "buffer empty exception!",
-		message: "can't read from an empty buffer!"
-	};
-};
+'use strict';
 
-var BufferFullException = function(){
-	return {
-		name: "buffer full exception!",
-		message: "can't write to a full buffer!"
-	};
-};
+let buffer, bufferMax;
 
-function read(){
-	if (buffer.length===0){
-		throw (BufferEmptyException());
-	}
-	return buffer.splice(0,1)[0];
+function bufferEmptyException() {
+  return {
+    name:    "buffer empty exception!",
+    message: "can't read from an empty buffer!"
+  }
+}
+
+function bufferFullException() {
+  return {
+    name:    "buffer full exception!",
+    message: "can't write to a full buffer!"
+  }
+}
+
+function read() {
+  if (buffer.length === 0) {
+    throw bufferEmptyException();
+  }
+  return buffer.shift();
 }
 
 function write(value){
-	if (buffer.length===bufferMax){
-		throw (BufferFullException())
-	}
-	value ? buffer.push(value) : null;
+  if (buffer.length === bufferMax){
+    throw bufferFullException();
+  }
+  if (isValid(value)) buffer.push(value);
 }
 
 function forceWrite(value){
-	read();
-	write(value);
+  if (isValid(value)) {
+    if (buffer.length === bufferMax) read();
+    buffer.push(value);
+  }
 }
 
-function clear(){
-	buffer=new Array();
+function isValid(value){
+  return value !== undefined && value !== null;
 }
 
-var CircularBuffer = function(bufferMax){
-	this.buffer=new Array();
-	this.bufferMax=bufferMax;
-	return {
-		read: read,
-		write: write,
-		forceWrite: forceWrite,
-		clear: clear
-	};	
-};
+function clear() {
+  buffer.length = 0
+}
 
-exports.circularBuffer = CircularBuffer;
+function circularBuffer(capacity) {
+  buffer = [];
+  bufferMax = capacity;
+  return {read, write, forceWrite, clear};
+}
 
-exports.bufferEmptyException = BufferEmptyException;
-
-exports.bufferFullException = BufferFullException;
-      
+module.exports = { circularBuffer, bufferEmptyException, bufferFullException };

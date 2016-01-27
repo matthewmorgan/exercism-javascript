@@ -1,12 +1,7 @@
-module.exports = function(binary){
-	this.binary=binary;
+export default function(binary) {
+	const b = binary.match(/[^01]/) ? '0' : binary;
 	return {
-		toDecimal: function(){
-			return binary.split('').reverse().reduce(function(prev, curr, ii){
-				return prev+(curr==='1' ? Math.pow(2,ii) : 0);
-			}, 0);
-		}
+		toDecimal: () => b.split('').reduce((acc, curr) => acc*2 + parseInt(curr),0)
 	};
 };
-
 
